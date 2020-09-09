@@ -11,4 +11,8 @@ app.get('/style', (req, res) => {
   res.sendFile(clientDir + 'style.css')
 })
 
+app.get('/fbi', (req, res) => {
+  res.sendFile(clientDir + 'FBI.png')
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

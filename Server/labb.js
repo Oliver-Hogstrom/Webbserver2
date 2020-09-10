@@ -16,3 +16,6 @@ exports.multi = (num1, num2) => {
     return prod
 };
 
+exports.login = (age, name) => {
+    let login = age && name
+}

@@ -1,12 +1,19 @@
+// The boring but ipmortant stuff
 const express = require('express')
 const labb = require ('./labb')
 const app = express()
 const port = 3000
 
+
+
+mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true})
+
 app.use(express.json())
 app.use(express.urlencoded())
 
 
+
+// This is for the HTML and a basic form, that shoots out different console logs.
 let shit = "You are not Oliver you little shit!!!"
 let Yay = "You may pass Master Oliver!"
 

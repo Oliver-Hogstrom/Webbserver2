@@ -1,6 +1,5 @@
 const express = require('express')
 const labb = require ('./labb')
-const DB = require ('./app')
 const app = express()
 const port = 3000
 
@@ -23,6 +22,13 @@ let Yay = "You may pass Master Oliver!"
 
 const clientDir = __dirname + `\\client\\`
 
+const personSchema = new mongoose.Schema({
+  fname: String,
+  age: Number
+});
+
+const Person = mongoose.model('Person', personSchema)
+
 //These are all get to access the webbpage, css and pictures
 app.get('/', (req, res) => res.sendFile(clientDir + 'index.html'))
 
@@ -37,6 +43,8 @@ app.get('/fbi', (req, res) => {
 //This is the POST for fname and age and it will hopefully match a if statment
 app.post('/', function (req, res,) {
 
+  var oliver = new Person({fname: req.body.fname, age: req.body.age})
+
   if( req.body.age == 17 && req.body.fname === "Oliver"){
       console.log(Yay)
   }
@@ -49,6 +57,7 @@ app.post('/', function (req, res,) {
   else{
       console.log("You dont belong here!")
   }
+  oliver.save()
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

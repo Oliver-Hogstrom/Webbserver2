@@ -1,17 +1,12 @@
 const express = require('express')
 const labb = require ('./labb')
+const databaseModule = require ('./databaseModule')
 const app = express()
 const port = 3000
 
 // getting-started.js
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/IT18', {useNewUrlParser: true});
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
-});
+
 
 app.use(express.json())
 app.use(express.urlencoded())
@@ -22,12 +17,7 @@ let Yay = "You may pass Master Oliver!"
 
 const clientDir = __dirname + `\\client\\`
 
-const personSchema = new mongoose.Schema({
-  fname: String,
-  age: Number
-});
 
-const Person = mongoose.model('Person', personSchema)
 
 //These are all get to access the webbpage, css and pictures
 app.get('/', (req, res) => res.sendFile(clientDir + 'index.html'))
@@ -43,7 +33,7 @@ app.get('/fbi', (req, res) => {
 //This is the POST for fname and age and it will hopefully match a if statment
 app.post('/', function (req, res,) {
 
-  var oliver = new Person({fname: req.body.fname, age: req.body.age})
+  databaseModule.storePerson(req.body.fname, req.body.age)
 
   if( req.body.age == 17 && req.body.fname === "Oliver"){
       console.log(Yay)
@@ -57,7 +47,7 @@ app.post('/', function (req, res,) {
   else{
       console.log("You dont belong here!")
   }
-  oliver.save()
+  
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

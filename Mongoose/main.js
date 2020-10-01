@@ -1,12 +1,13 @@
 const express = require('express')
 const labb = require ('./labb')
 const databaseModule = require ('./databaseModule')
+const perosnModel = require ('./personModel')
 const app = express()
 const port = 3000
 
 // getting-started.js
 
-
+databaseModule.DB()
 
 app.use(express.json())
 app.use(express.urlencoded())
@@ -33,7 +34,9 @@ app.get('/fbi', (req, res) => {
 //This is the POST for fname and age and it will hopefully match a if statment
 app.post('/', function (req, res,) {
 
-  databaseModule.storePerson(req.body.fname, req.body.age)
+  let person = perosnModel.createPerson(req.body.fname, req.body.age)
+
+  databaseModule.storeElement(person)
 
   if( req.body.age == 17 && req.body.fname === "Oliver"){
       console.log(Yay)

@@ -38,13 +38,13 @@ app.post('/', function (req, res,) {
 
   databaseModule.storeElement(person)
 
-  if( req.body.age == 17 && req.body.fname === "Oliver"){
+  if( req.body.age == 18 && req.body.fname === "Oliver"){
       console.log(Yay)
   }
-  else if(req.body.age != 17 && req.body.fname === "Oliver"){
+  else if(req.body.age != 18 && req.body.fname === "Oliver"){
       console.log(shit)
   }
-  else if(req.body.age == 17 && req.body.fname != "Oliver"){
+  else if(req.body.age == 18 && req.body.fname != "Oliver"){
       console.log(shit)
   }
   else{

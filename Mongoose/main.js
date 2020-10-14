@@ -30,22 +30,22 @@ app.get('/', (req, res) =>{
 //This is the POST for fname and age and it will hopefully match a if statment
 app.post('/', function (req, res,) {
 
-  let person = perosnModel.createPerson(req.body.fname, req.body.age)
+  let msg = perosnModel.createPerson(req.body.msg, req.body.age)
 
-  databaseModule.storeElement(person)
+  databaseModule.storeElement(msg)
 
-  if( req.body.age == 18 && req.body.fname === "Oliver"){
-      console.log(Yay)
-  }
-  else if(req.body.age != 18 && req.body.fname === "Oliver"){
-      console.log(shit)
-  }
-  else if(req.body.age == 18 && req.body.fname != "Oliver"){
-      console.log(shit)
-  }
-  else{
-      console.log("You dont belong here!")
-  }
+  // if( req.body.age == 18 && req.body.fname === "Oliver"){
+  //     console.log(Yay)
+  // }
+  // else if(req.body.age != 18 && req.body.fname === "Oliver"){
+  //     console.log(shit)
+  // }
+  // else if(req.body.age == 18 && req.body.fname != "Oliver"){
+  //     console.log(shit)
+  // }
+  // else{
+  //     console.log("You dont belong here!")
+  // }
   res.render("pages/index.ejs", {name:req.body.fname})
 })
 

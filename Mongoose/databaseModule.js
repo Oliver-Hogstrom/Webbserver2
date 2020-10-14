@@ -13,6 +13,6 @@ db.once('open', function() {
 
 exports.storeElement = (element)=>{
   element.save(() =>{
-      console.log("successfully saved person in DB!")
+      console.log("successfully saved this in DB!")
   })
 }

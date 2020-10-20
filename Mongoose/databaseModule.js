@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const personModel = require ('./personModel')
+
+
 
 exports.DB = () =>{
-mongoose.connect('mongodb://localhost/IT18', {useNewUrlParser: true,  useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost/msg', {useNewUrlParser: true,  useUnifiedTopology: true});
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

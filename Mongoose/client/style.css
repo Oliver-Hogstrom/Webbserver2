@@ -20,3 +20,7 @@ body button{
     height: 200px;
     margin: auto;
 }
+.msg{
+    display: flex;
+    float: left;
+}

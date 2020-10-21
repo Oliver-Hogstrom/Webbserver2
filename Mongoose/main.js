@@ -60,6 +60,8 @@ app.post('/message', async function (req, res) {
   let message = msgModel.createMsg(req.body.msg, req.body.name)
   databaseModule.storeElement(message)
 
+  await msgModel.find({name:"", msg:""});
+
   res.render('pages/msg.ejs')
 })
 

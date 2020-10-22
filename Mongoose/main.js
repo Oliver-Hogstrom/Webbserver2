@@ -16,53 +16,37 @@ app.use(express.urlencoded())
 
 app.set('view engine', 'ejs')
 
-let shit = "You are not Oliver you little shit!!!"
-let Yay = "You may pass Master Oliver!"
+// let shit = "You are not Oliver you little shit!!!"
+// let Yay = "You may pass Master Oliver!"
 
 const clientDir = __dirname + `\\client\\`
 app.use(express.static(clientDir))
 
-//These are all get to access the webbpage, css and pictures
+
 app.get('/', (req, res) =>{ 
   res.render("pages/index.ejs", {name:""})
 })
 
-app.get('/msg', (req, res) => {
-  res.render('pages/msg.ejs')
+app.get('/msg', async (req, res) => {
+  const posts = await msgModel.getAllMessages()
+  res.render('pages/msg.ejs', {msg: posts})
 })
 
-
-// This is the POST for fname and age and it will hopefully match a if statment
 app.post('/', function (req, res,) {
 
   let person = perosnModel.createPerson(req.body.fname, req.body.age)
 
   databaseModule.storeElement(person)
-  
 
-  if( req.body.age == 18 && req.body.fname === "Oliver"){
-      console.log(Yay)
-  }
-  else if(req.body.age != 18 && req.body.fname === "Oliver"){
-      console.log(shit)
-  }
-  else if(req.body.age == 18 && req.body.fname != "Oliver"){
-      console.log(shit)
-  }
-  else{
-      console.log("You dont belong here!")
-  }
-  res.render("pages/index.ejs", {name:req.body.fname})
+  res.render("pages/index.ejs", {name:" " + req.body.fname})
 })
 
 app.post('/message', async function (req, res) {
 
-  let message = msgModel.createMsg(req.body.msg, req.body.name)
-  databaseModule.storeElement(message)
+  let post = msgModel.createMsg(req.body.msg, req.body.name)
+  databaseModule.storeElement(post)
 
-  await msgModel.find({name:"", msg:""});
-
-  res.render('pages/msg.ejs')
+  res.redirect('/msg')
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

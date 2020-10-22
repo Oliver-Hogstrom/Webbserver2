@@ -15,3 +15,8 @@ const msgSchema = new mongoose.Schema({
         })
         return message
   }
+
+  exports.getAllMessages = async () => {
+    let messages = await Msg.find({})
+    return messages
+}

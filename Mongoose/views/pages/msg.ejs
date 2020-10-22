@@ -14,9 +14,9 @@
         <input type="text" id="msg" name="msg">
         <button type="submit">Submit your message!</button>
     </form>
-    <div class="msg">
-       
-    </div>
+    <% for( let i = 0; i < msg.length; i++ ) { %>
+        <h1><%- msg[i].msg %>  </h1>
+    <% } %>
     
 </body>
 </html> 

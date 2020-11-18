@@ -78,8 +78,6 @@ app.post('/login', async function(req, res) {
     } else {
         res.send('USER DO NOT EXIST')
     }
-
-    res.redirect('')
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
